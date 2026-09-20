@@ -1,0 +1,66 @@
+{
+  "variant": "test3-keep-all-mods-original-i3rby-path",
+  "source": "reconstructed exact target executable from prior combined build",
+  "source_combined_file": "8BallPool_56.29.2_i3rby_neu_signieren.ipa",
+  "restore_first_injection": {
+    "removed_offset": 13896,
+    "removed_bytes": 80,
+    "restored_sha256": "3cbcc35f59ce42bb41b4f948473acc16fa22683ebc4d86fbc3f37fc048e05914"
+  },
+  "restored_target_main_sha256": "3cbcc35f59ce42bb41b4f948473acc16fa22683ebc4d86fbc3f37fc048e05914",
+  "all_existing_mods_preserved": true,
+  "igamegod_preserved": true,
+  "removed_first_i3rby_framework_entries": [
+    "Payload/pool.app/Frameworks/i3rby.framework/i3rby",
+    "Payload/pool.app/Frameworks/i3rby.framework/Info.plist"
+  ],
+  "target_loader_relocated": {
+    "from": "Payload/pool.app/Frameworks/libloader.framework/",
+    "to": "Payload/pool.app/Frameworks/lg.framework/",
+    "old_install_name": "_______",
+    "new_install_name": "@rpath/lg.framework/libloader",
+    "bundle_id_before": "com.appdome.libloader",
+    "bundle_id_after": "local.iosgods.relocated.loader",
+    "bundle_id_changed_to_avoid_collision": true
+  },
+  "main_existing_loader_patch": {
+    "cmd": "0xc",
+    "offset": 13768,
+    "old": "@executable_path/Frameworks/libloader.framework/libloader",
+    "new": "@executable_path/Frameworks/lg.framework/libloader"
+  },
+  "main_i3rby_append": {
+    "offset": 13896,
+    "bytes": 88,
+    "padding_before": 2488,
+    "padding_after": 2400
+  },
+  "other_macho_loader_reference_changes": [],
+  "i3rby": {
+    "path": "Payload/pool.app/Frameworks/libloader.framework/libloader",
+    "sha256": "d44ed5b80ff3418d0ac07829833b95a060da9cf89a0d3d6d9fd2094d70b6dbeb",
+    "binary_unchanged": true,
+    "plist_unchanged": true,
+    "install_name": "@rpath/libloader.framework/libloader"
+  },
+  "removed_stale_relocated_loader_signature_entries": [
+    "Payload/pool.app/Frameworks/libloader.framework/_CodeSignature/",
+    "Payload/pool.app/Frameworks/libloader.framework/_CodeSignature/CodeResources"
+  ],
+  "output_ipa": "8BallPool_i3rby_Test3_all_mods_neu_signieren.ipa",
+  "output_size_bytes": 95649279,
+  "output_sha256": "09bba4308b3f4686e32dccabee496e879bed70e4f79af33bac8d4f04f7912f29",
+  "signing_required": true,
+  "signing_performed": false,
+  "runtime_test_performed": false,
+  "verification": {
+    "all_zip_entries_crc_read": true,
+    "no_duplicate_zip_entries": true,
+    "main_loads_both_mod_loaders_once": true
+  },
+  "limitations": [
+    "Static packaging verification cannot prove runtime compatibility.",
+    "The IPA and embedded frameworks must be re-signed before installation.",
+    "If startup still fails, a device .ips crash report is needed."
+  ]
+}
