@@ -20,15 +20,20 @@ clang \
 cp "$ROOT/../Original-identisch/libloader.framework/Info.plist" "$FRAME/Info.plist"
 chmod 755 "$NEW"
 
-# Verify the generated dylib exports the exact symbol used by the working original.
 echo '=== ORIGINAL EXPORT ==='
-nm -gU "$ORIG" | grep 'iBWuJnPubwtWJIGVxT'
-echo '=== GENERATED EXPORT ==='
-nm -gU "$NEW" | grep 'iBWuJnPubwtWJIGVxT'
+nm -gU "$ORIG" | grep 'iBWuJnPubwtWJIGVxT' || true
 
-echo '=== GENERATED MACH-O ==='
-file "$NEW"
-otool -L "$NEW"
+echo '=== ORIGINAL FUNCTION DISASSEMBLY: OTOOL -p ==='
+otool -tvV -p iBWuJnPubwtWJIGVxT "$ORIG" 2>&1 | head -n 160 || true
+
+echo '=== ORIGINAL FUNCTION DISASSEMBLY: LLVM OBJDUMP ==='
+xcrun llvm-objdump --macho --disassemble "$ORIG" 2>&1 | grep -A120 -B5 'iBWuJnPubwtWJIGVxT' || true
+
+echo '=== RAW BYTES AROUND 0x108A0 ==='
+otool -s __TEXT __text "$ORIG" 2>&1 | head -n 120 || true
+
+echo '=== GENERATED EXPORT ==='
+nm -gU "$NEW" | grep 'iBWuJnPubwtWJIGVxT' || true
 
 cd "$OUT"
 /usr/bin/zip -qry "KingTweak_Compatibility_Test.zip" "libloader.framework"
