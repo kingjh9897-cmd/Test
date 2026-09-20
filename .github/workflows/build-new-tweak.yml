@@ -17,7 +17,7 @@ jobs:
       - name: Upload tweak zip
         uses: actions/upload-artifact@v4
         with:
-          name: i3rby_NewTweak_Test
+          name: KingTweak_Stable_RightButton
           path: |
-            Tweak/NewTweak/dist/i3rby_NewTweak_Test.zip
+            Tweak/NewTweak/dist/KingTweak_Stable_RightButton.zip
             Tweak/NewTweak/dist/SHA256SUMS.txt
