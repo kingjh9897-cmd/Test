@@ -1,0 +1,23 @@
+name: Build KingMenu
+
+on:
+  push:
+    paths:
+      - 'Tweak/KingMenu/**'
+      - '.github/workflows/build-kingmenu.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build KingMenu framework
+        run: bash Tweak/KingMenu/build.sh
+      - name: Upload KingMenu zip
+        uses: actions/upload-artifact@v4
+        with:
+          name: KingMenu_NoAds
+          path: |
+            Tweak/KingMenu/dist/KingMenu_NoAds.zip
+            Tweak/KingMenu/dist/SHA256SUMS.txt
