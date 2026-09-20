@@ -21,50 +21,17 @@ chmod 755 "$NEW"
 
 REPORT="$OUT/STRUCTURE_COMPARE.txt"
 {
-  echo '=== SHA256 / SIZE ==='
-  shasum -a 256 "$ORIG" "$NEW"
-  ls -l "$ORIG" "$NEW"
+  echo '=== REQUIRED EXPORT DETAIL ==='
+  nm -gU "$ORIG" | grep 'iBWuJnPubwtWJIGVxT' || true
+  nm -m "$ORIG" | grep 'iBWuJnPubwtWJIGVxT' || true
+  xcrun dyld_info -exports "$ORIG" 2>/dev/null | grep -A3 -B3 'iBWuJnPubwtWJIGVxT' || true
   echo
-  echo '=== FILE ==='
-  file "$ORIG"
-  file "$NEW"
+  echo '=== NEW EXPORT DETAIL ==='
+  nm -gU "$NEW" || true
+  xcrun dyld_info -exports "$NEW" 2>/dev/null || true
   echo
-  echo '=== LIPO ==='
-  lipo -info "$ORIG" || true
-  lipo -info "$NEW" || true
-  echo
-  echo '=== MACH HEADER ORIGINAL ==='
-  otool -hv "$ORIG" || true
-  echo '=== MACH HEADER NEW ==='
-  otool -hv "$NEW" || true
-  echo
-  echo '=== DEPENDENCIES ORIGINAL ==='
+  echo '=== ORIGINAL LOADS ==='
   otool -L "$ORIG" || true
-  echo '=== DEPENDENCIES NEW ==='
-  otool -L "$NEW" || true
-  echo
-  echo '=== BUILD VERSION / MIN OS ORIGINAL ==='
-  xcrun vtool -show-build "$ORIG" || true
-  echo '=== BUILD VERSION / MIN OS NEW ==='
-  xcrun vtool -show-build "$NEW" || true
-  echo
-  echo '=== EXPORTED SYMBOL COUNT ==='
-  printf 'original: '; nm -gjU "$ORIG" 2>/dev/null | wc -l || true
-  printf 'new: '; nm -gjU "$NEW" 2>/dev/null | wc -l || true
-  echo
-  echo '=== ORIGINAL EXPORTED SYMBOLS (first 250) ==='
-  nm -gjU "$ORIG" 2>/dev/null | head -250 || true
-  echo
-  echo '=== NEW EXPORTED SYMBOLS ==='
-  nm -gjU "$NEW" 2>/dev/null || true
-  echo
-  echo '=== ORIGINAL OBJC CLASS EXPORTS ==='
-  nm -gjU "$ORIG" 2>/dev/null | egrep '^_OBJC_(CLASS|METACLASS)_\$_' | head -200 || true
-  echo
-  echo '=== CODESIGN ORIGINAL ==='
-  codesign -dvvv "$ORIG" 2>&1 || true
-  echo '=== CODESIGN NEW ==='
-  codesign -dvvv "$NEW" 2>&1 || true
 } | tee "$REPORT"
 
 cd "$OUT"
