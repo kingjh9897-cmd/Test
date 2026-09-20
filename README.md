@@ -14,3 +14,12 @@ Der originale kompilierte Tweak aus `pool8Signed 2(2).ipa` wurde unverändert ex
 Das Framework enthält Hinweise auf `GBModMenu`, `GBPredictionDrawView` und die i3rby-Menüfunktionen. Die `.dylib` ist eine bytegleiche Kopie des Framework-Binaries. Der ursprüngliche Tweak-Quelltext wurde nicht wiederhergestellt; der Python-Code dient ausschließlich zur Extraktion.
 
 Ein erneuter Einbau benötigt passende Ladepfade und eine gültige iOS-Signierung. Ein Funktionstest auf einem iPhone wurde nicht durchgeführt.
+
+## Einbau in die Ziel-IPA
+
+Der i3rby-Tweak wurde zusätzlich in die bereitgestellte iOSGods-IPA derselben Spielversion eingebaut. Das neue `i3rby.framework` verwendet einen eigenen Namen; die vorhandenen Frameworks bleiben erhalten. Die Ausgabe muss vor der Installation neu signiert werden.
+
+- [Einbau, Signierung und Prüfungen](i3rby-tweak/EINBAU.md)
+- [Einbauskript](i3rby-tweak/inject_i3rby.py)
+- [Prüfbericht der erzeugten IPA](i3rby-tweak/integration-report.json)
+- [Vergleich der Spielprogramme](i3rby-tweak/target-compatibility.json)

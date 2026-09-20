@@ -1,0 +1,51 @@
+{
+  "input_ipa": "8 Ball Pool v56.29.2 Signed by iOSGods 2.ipa",
+  "input_ipa_sha256": "27500e6357fc4b215f70f7df1379b29bd921fc2b6cb62d0b6c56302e260ee698",
+  "output_ipa": "8BallPool_56.29.2_i3rby_neu_signieren.ipa",
+  "output_ipa_sha256": "5e8336ffe6c8f306b973feecb1b72ff4d781ad06d75271252d0cfd05f9e6854e",
+  "output_size_bytes": 95650148,
+  "bundle_id": "com.miniclip.8ballpoolmult",
+  "version": "56.29.2",
+  "build": "5324",
+  "framework_path": "Payload/pool.app/Frameworks/i3rby.framework/",
+  "load_name": "@executable_path/Frameworks/i3rby.framework/i3rby",
+  "install_name": "@rpath/i3rby.framework/i3rby",
+  "framework_bundle_id": "local.extracted.i3rby",
+  "original_tweak_sha256": "d44ed5b80ff3418d0ac07829833b95a060da9cf89a0d3d6d9fd2094d70b6dbeb",
+  "embedded_tweak_sha256": "f591335e9d5b056b39173c80823b44c6c68bf05031d840a7e2c89190ec686b90",
+  "framework_install_name_changed_range": {
+    "offset": 4192,
+    "size": 40
+  },
+  "original_app_executable_sha256": "3cbcc35f59ce42bb41b4f948473acc16fa22683ebc4d86fbc3f37fc048e05914",
+  "patched_app_executable_sha256": "5e7707e4771668b7e774766f501565e7be1a57716a1b6efc0aa614b6b88cbe1d",
+  "patch": {
+    "load_command_offset": 13896,
+    "load_command_bytes": 80,
+    "header_padding_before": 2488,
+    "header_padding_after": 2408,
+    "executable_sections_unchanged": true,
+    "existing_load_commands_unchanged": true
+  },
+  "verification": {
+    "all_zip_entries_crc_checked": true,
+    "all_original_files_preserved_except_app_header": true,
+    "original_entries": 3224,
+    "added_files": [
+      "Payload/pool.app/Frameworks/i3rby.framework/i3rby",
+      "Payload/pool.app/Frameworks/i3rby.framework/Info.plist"
+    ],
+    "existing_libloader_preserved": true,
+    "existing_igamegod_preserved": true,
+    "runtime_test_performed": false
+  },
+  "signing": {
+    "resigning_required": true,
+    "signing_performed": false,
+    "note": "The existing app signature is invalidated by the changes. Re-sign app, frameworks and extensions with the user's signing tool."
+  },
+  "limitations": [
+    "Static packaging checks do not prove runtime compatibility between the existing tweaks and i3rby.",
+    "The original tweak may have runtime checks or service requirements that were not changed."
+  ]
+}
