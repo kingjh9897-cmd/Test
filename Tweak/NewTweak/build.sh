@@ -11,30 +11,26 @@ SDK="$(xcrun --sdk iphoneos --show-sdk-path)"
 clang \
   -arch arm64 \
   -dynamiclib \
+  -fvisibility=hidden \
   -miphoneos-version-min=11.0 \
   -isysroot "$SDK" \
   -install_name @rpath/libloader.framework/libloader \
-  "$ROOT/NoOpTweak.c" \
+  "$ROOT/CompatibilityTweak.c" \
   -o "$NEW"
 cp "$ROOT/../Original-identisch/libloader.framework/Info.plist" "$FRAME/Info.plist"
 chmod 755 "$NEW"
 
-REPORT="$OUT/STRUCTURE_COMPARE.txt"
-{
-  echo '=== REQUIRED EXPORT DETAIL ==='
-  nm -gU "$ORIG" | grep 'iBWuJnPubwtWJIGVxT' || true
-  nm -m "$ORIG" | grep 'iBWuJnPubwtWJIGVxT' || true
-  xcrun dyld_info -exports "$ORIG" 2>/dev/null | grep -A3 -B3 'iBWuJnPubwtWJIGVxT' || true
-  echo
-  echo '=== NEW EXPORT DETAIL ==='
-  nm -gU "$NEW" || true
-  xcrun dyld_info -exports "$NEW" 2>/dev/null || true
-  echo
-  echo '=== ORIGINAL LOADS ==='
-  otool -L "$ORIG" || true
-} | tee "$REPORT"
+# Verify the generated dylib exports the exact symbol used by the working original.
+echo '=== ORIGINAL EXPORT ==='
+nm -gU "$ORIG" | grep 'iBWuJnPubwtWJIGVxT'
+echo '=== GENERATED EXPORT ==='
+nm -gU "$NEW" | grep 'iBWuJnPubwtWJIGVxT'
+
+echo '=== GENERATED MACH-O ==='
+file "$NEW"
+otool -L "$NEW"
 
 cd "$OUT"
-/usr/bin/zip -qry "KingTweak_NoOp_Diagnostic.zip" "libloader.framework"
-shasum -a 256 "$FRAME/libloader" "KingTweak_NoOp_Diagnostic.zip" > SHA256SUMS.txt
+/usr/bin/zip -qry "KingTweak_Compatibility_Test.zip" "libloader.framework"
+shasum -a 256 "$FRAME/libloader" "KingTweak_Compatibility_Test.zip" > SHA256SUMS.txt
 cat SHA256SUMS.txt
