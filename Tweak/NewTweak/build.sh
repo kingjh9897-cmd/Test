@@ -14,17 +14,14 @@ clang \
   -isysroot "$SDK" \
   -framework UIKit \
   -framework Foundation \
-  -framework CoreGraphics \
-  -framework QuartzCore \
   -install_name @rpath/libloader.framework/libloader \
-  "$ROOT/MenuTweak.m" \
-  "$ROOT/FloatingButtonStyle.m" \
+  "$ROOT/StableMenuTweak.m" \
   -o "$FRAME/libloader"
 cp "$ROOT/Info.plist" "$FRAME/Info.plist"
 chmod 755 "$FRAME/libloader"
 cd "$OUT"
-/usr/bin/zip -qry "i3rby_NewTweak_Test.zip" "libloader.framework"
-shasum -a 256 "$FRAME/libloader" "i3rby_NewTweak_Test.zip" > SHA256SUMS.txt
+/usr/bin/zip -qry "KingTweak_Stable_RightButton.zip" "libloader.framework"
+shasum -a 256 "$FRAME/libloader" "KingTweak_Stable_RightButton.zip" > SHA256SUMS.txt
 file "$FRAME/libloader"
 otool -L "$FRAME/libloader"
 cat SHA256SUMS.txt
