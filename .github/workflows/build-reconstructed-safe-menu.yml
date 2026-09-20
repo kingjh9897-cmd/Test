@@ -1,0 +1,40 @@
+name: Build Reconstructed Safe Menu
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Tweak/ReconstructedSafeMenu/**'
+      - '.github/workflows/build-reconstructed-safe-menu.yml'
+
+jobs:
+  build:
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build KingReconstructed framework
+        run: |
+          chmod +x Tweak/ReconstructedSafeMenu/build.sh
+          Tweak/ReconstructedSafeMenu/build.sh
+
+      - name: Verify output
+        run: |
+          test -f Tweak/ReconstructedSafeMenu/dist/KingReconstructed.framework.zip
+          test -f Tweak/ReconstructedSafeMenu/dist/SHA256SUMS.txt
+          ls -lah Tweak/ReconstructedSafeMenu/dist
+          cat Tweak/ReconstructedSafeMenu/dist/SHA256SUMS.txt
+
+      - name: Upload KingReconstructed artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: KingReconstructed-framework
+          path: |
+            Tweak/ReconstructedSafeMenu/dist/KingReconstructed.framework.zip
+            Tweak/ReconstructedSafeMenu/dist/SHA256SUMS.txt
+          if-no-files-found: error
+          retention-days: 30
