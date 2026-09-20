@@ -14,6 +14,7 @@ clang \
   -isysroot "$SDK" \
   -framework UIKit \
   -framework Foundation \
+  -framework CoreGraphics \
   -install_name @rpath/libloader.framework/libloader \
   "$ROOT/MenuTweak.m" \
   -o "$FRAME/libloader"
