@@ -1,0 +1,23 @@
+name: Build Single Loader KingMenu
+
+on:
+  push:
+    paths:
+      - 'Tweak/SingleLoaderKingMenu/**'
+      - '.github/workflows/build-single-loader-kingmenu.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build single libloader framework
+        run: bash Tweak/SingleLoaderKingMenu/build.sh
+      - name: Upload single loader zip
+        uses: actions/upload-artifact@v4
+        with:
+          name: KingMenu_Single_libloader
+          path: |
+            Tweak/SingleLoaderKingMenu/dist/KingMenu_Single_libloader.zip
+            Tweak/SingleLoaderKingMenu/dist/SHA256SUMS.txt
