@@ -1,12 +1,10 @@
 # Test
 
-## Aktueller Stand: Testversion 2 nach Startabsturz
+## Aktueller Stand: Absturzdiagnose mit allen Mods
 
-Die erste kombinierte Variante stürzt laut Nutzer etwa zwei Sekunden nach dem Start ab. Die genaue Ursache ist ohne Geräte-Absturzbericht offen. Eine zweite, noch nicht auf dem iPhone getestete Variante enthält nur i3rby unter seinem ursprünglichen Framework-Pfad; der alte Ziel-Loader wurde ersetzt und iGameGod entfernt. Die Ausgabe muss neu signiert werden.
+Der Nutzer hat bestätigt, dass die iOSGods-IPA mit **allen bisherigen Mods plus i3rby** erhalten bleiben soll. Ausgangspunkt ist daher wieder die kombinierte Variante: ursprünglicher Ziel-Loader, iGameGod und zusätzlich i3rby. Die isolierte Testversion 2 ist keine gewünschte Ziellösung und bleibt nur als Diagnoseversuch dokumentiert.
 
-- [Testversion 2: Änderungen und Diagnose](i3rby-tweak/TEST2.md)
-- [Skript für die isolierte Variante](i3rby-tweak/build_i3rby_isolated.py)
-- [Prüfbericht der zweiten IPA](i3rby-tweak/test2-report.json)
+Die kombinierte Variante stürzt laut Nutzer ungefähr zwei Sekunden nach dem Start ab. Die genaue Ursache ist noch nicht bestätigt, und eine Reparatur ist noch nicht erfolgt. Für die gezielte Diagnose werden der Geräte-Absturzbericht (`pool…ips`) und das nach dem Umbau verwendete Signierprogramm benötigt. Weitere Änderungen sollen sämtliche bisherigen Mods erhalten.
 
 ## i3rby-Tweak aus 8 Ball Pool
 
