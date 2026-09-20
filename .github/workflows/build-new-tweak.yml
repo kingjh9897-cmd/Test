@@ -1,0 +1,23 @@
+name: Build New Tweak
+
+on:
+  push:
+    paths:
+      - 'Tweak/NewTweak/**'
+      - '.github/workflows/build-new-tweak.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build framework
+        run: bash Tweak/NewTweak/build.sh
+      - name: Upload tweak zip
+        uses: actions/upload-artifact@v4
+        with:
+          name: i3rby_NewTweak_Test
+          path: |
+            Tweak/NewTweak/dist/i3rby_NewTweak_Test.zip
+            Tweak/NewTweak/dist/SHA256SUMS.txt
