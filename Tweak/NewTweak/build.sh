@@ -48,10 +48,18 @@ REPORT="$OUT/STRUCTURE_COMPARE.txt"
   echo '=== BUILD VERSION / MIN OS NEW ==='
   xcrun vtool -show-build "$NEW" || true
   echo
-  echo '=== SELECTED LOAD COMMANDS ORIGINAL ==='
-  otool -l "$ORIG" | egrep -A8 'LC_ID_DYLIB|LC_BUILD_VERSION|LC_VERSION_MIN_IPHONEOS|LC_CODE_SIGNATURE|LC_ENCRYPTION_INFO|LC_DYLD_INFO|LC_DYLD_CHAINED_FIXUPS' || true
-  echo '=== SELECTED LOAD COMMANDS NEW ==='
-  otool -l "$NEW" | egrep -A8 'LC_ID_DYLIB|LC_BUILD_VERSION|LC_VERSION_MIN_IPHONEOS|LC_CODE_SIGNATURE|LC_ENCRYPTION_INFO|LC_DYLD_INFO|LC_DYLD_CHAINED_FIXUPS' || true
+  echo '=== EXPORTED SYMBOL COUNT ==='
+  printf 'original: '; nm -gjU "$ORIG" 2>/dev/null | wc -l || true
+  printf 'new: '; nm -gjU "$NEW" 2>/dev/null | wc -l || true
+  echo
+  echo '=== ORIGINAL EXPORTED SYMBOLS (first 250) ==='
+  nm -gjU "$ORIG" 2>/dev/null | head -250 || true
+  echo
+  echo '=== NEW EXPORTED SYMBOLS ==='
+  nm -gjU "$NEW" 2>/dev/null || true
+  echo
+  echo '=== ORIGINAL OBJC CLASS EXPORTS ==='
+  nm -gjU "$ORIG" 2>/dev/null | egrep '^_OBJC_(CLASS|METACLASS)_\$_' | head -200 || true
   echo
   echo '=== CODESIGN ORIGINAL ==='
   codesign -dvvv "$ORIG" 2>&1 || true
