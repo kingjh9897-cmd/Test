@@ -1,0 +1,60 @@
+{
+  "variant": "isolated-i3rby-test-2",
+  "purpose": "Diagnose the reported crash of the combined variant",
+  "cause_confirmed": false,
+  "crash_log_available": false,
+  "runtime_test_performed": false,
+  "input_ipa": "8 Ball Pool v56.29.2 Signed by iOSGods 2.ipa",
+  "input_sha256": "27500e6357fc4b215f70f7df1379b29bd921fc2b6cb62d0b6c56302e260ee698",
+  "output_ipa": "8BallPool_i3rby_Test2_neu_signieren.ipa",
+  "output_sha256": "afbf877b6786f908dc5f58982fceaabc280fad2b2906b45e27c54bc9b31a43a3",
+  "output_size_bytes": 86122345,
+  "original_i3rby_binary_sha256": "d44ed5b80ff3418d0ac07829833b95a060da9cf89a0d3d6d9fd2094d70b6dbeb",
+  "i3rby_binary_unchanged": true,
+  "original_install_name": "@rpath/libloader.framework/libloader",
+  "removed_load_commands": [
+    {
+      "offset": 13832,
+      "bytes": 64,
+      "name": "@rpath/iGameGod.framework/iGameGod"
+    }
+  ],
+  "removed_or_replaced_members": [
+    "Payload/pool.app/Frameworks/iGameGod.framework/",
+    "Payload/pool.app/Frameworks/iGameGod.framework/Assets.car",
+    "Payload/pool.app/Frameworks/iGameGod.framework/Headers/",
+    "Payload/pool.app/Frameworks/iGameGod.framework/Headers/AppCleaner.h",
+    "Payload/pool.app/Frameworks/iGameGod.framework/Headers/iGameGod-Swift.h",
+    "Payload/pool.app/Frameworks/iGameGod.framework/Info.plist",
+    "Payload/pool.app/Frameworks/iGameGod.framework/Modules/",
+    "Payload/pool.app/Frameworks/iGameGod.framework/Modules/iGameGod.swiftmodule/",
+    "Payload/pool.app/Frameworks/iGameGod.framework/Modules/iGameGod.swiftmodule/arm64-apple-ios.abi.json",
+    "Payload/pool.app/Frameworks/iGameGod.framework/Modules/iGameGod.swiftmodule/arm64-apple-ios.swiftdoc",
+    "Payload/pool.app/Frameworks/iGameGod.framework/Modules/iGameGod.swiftmodule/arm64-apple-ios.swiftmodule",
+    "Payload/pool.app/Frameworks/iGameGod.framework/Modules/module.modulemap",
+    "Payload/pool.app/Frameworks/iGameGod.framework/_CodeSignature/",
+    "Payload/pool.app/Frameworks/iGameGod.framework/_CodeSignature/CodeResources",
+    "Payload/pool.app/Frameworks/iGameGod.framework/iGameGod",
+    "Payload/pool.app/Frameworks/libloader.framework/",
+    "Payload/pool.app/Frameworks/libloader.framework/Info.plist",
+    "Payload/pool.app/Frameworks/libloader.framework/_CodeSignature/",
+    "Payload/pool.app/Frameworks/libloader.framework/_CodeSignature/CodeResources",
+    "Payload/pool.app/Frameworks/libloader.framework/libloader"
+  ],
+  "new_framework_files": [
+    "Payload/pool.app/Frameworks/libloader.framework/libloader",
+    "Payload/pool.app/Frameworks/libloader.framework/Info.plist"
+  ],
+  "preserved_member_count": 3204,
+  "game_code_and_section_layout_unchanged": true,
+  "all_output_members_crc_and_hash_verified": true,
+  "original_igamegod_removed": true,
+  "old_target_libloader_replaced": true,
+  "signing_required": true,
+  "signing_performed": false,
+  "limitations": [
+    "A device crash report is required to confirm the actual failure cause.",
+    "The output retains the target game's pre-existing code patches.",
+    "The i3rby binary remains unsigned and must be signed along with the app."
+  ]
+}

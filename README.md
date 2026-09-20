@@ -1,5 +1,13 @@
 # Test
 
+## Aktueller Stand: Testversion 2 nach Startabsturz
+
+Die erste kombinierte Variante stürzt laut Nutzer etwa zwei Sekunden nach dem Start ab. Die genaue Ursache ist ohne Geräte-Absturzbericht offen. Eine zweite, noch nicht auf dem iPhone getestete Variante enthält nur i3rby unter seinem ursprünglichen Framework-Pfad; der alte Ziel-Loader wurde ersetzt und iGameGod entfernt. Die Ausgabe muss neu signiert werden.
+
+- [Testversion 2: Änderungen und Diagnose](i3rby-tweak/TEST2.md)
+- [Skript für die isolierte Variante](i3rby-tweak/build_i3rby_isolated.py)
+- [Prüfbericht der zweiten IPA](i3rby-tweak/test2-report.json)
+
 ## i3rby-Tweak aus 8 Ball Pool
 
 Der originale kompilierte Tweak aus `pool8Signed 2(2).ipa` wurde unverändert extrahiert und byteweise geprüft. Quelle: 8 Ball Pool **56.29.2**, Build **5324**.
