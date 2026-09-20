@@ -15,8 +15,10 @@ clang \
   -framework UIKit \
   -framework Foundation \
   -framework CoreGraphics \
+  -framework QuartzCore \
   -install_name @rpath/libloader.framework/libloader \
   "$ROOT/MenuTweak.m" \
+  "$ROOT/FloatingButtonStyle.m" \
   -o "$FRAME/libloader"
 cp "$ROOT/Info.plist" "$FRAME/Info.plist"
 chmod 755 "$FRAME/libloader"
