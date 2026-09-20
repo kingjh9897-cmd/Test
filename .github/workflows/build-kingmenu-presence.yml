@@ -1,0 +1,23 @@
+name: Build KingMenu Presence Diagnostic
+
+on:
+  push:
+    paths:
+      - 'Tweak/KingMenuPresence/**'
+      - '.github/workflows/build-kingmenu-presence.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build presence diagnostic
+        run: bash Tweak/KingMenuPresence/build.sh
+      - name: Upload diagnostic zip
+        uses: actions/upload-artifact@v4
+        with:
+          name: KingMenuPresence_Diagnostic
+          path: |
+            Tweak/KingMenuPresence/dist/KingMenuPresence_Diagnostic.zip
+            Tweak/KingMenuPresence/dist/SHA256SUMS.txt
