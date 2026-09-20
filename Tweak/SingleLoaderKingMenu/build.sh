@@ -18,6 +18,7 @@ clang \
   -framework UIKit \
   -framework Foundation \
   -framework QuartzCore \
+  -framework CoreGraphics \
   -o "$FRAME/libloader"
 cp "$ROOT/../Original-identisch/libloader.framework/Info.plist" "$FRAME/Info.plist"
 chmod 755 "$FRAME/libloader"
